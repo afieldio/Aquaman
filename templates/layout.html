@@ -16,7 +16,7 @@
       google.setOnLoadCallback(drawChart);
 
       function drawChart() {
-        jsonData = {{data | safe}};
+        var jsonData = {{data | safe}};
 
         var data = new google.visualization.DataTable();
 
