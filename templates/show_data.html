@@ -1,15 +1,22 @@
 {% extends "layout.html" %}
 {% block body %}
   {% if session.logged_in %}
-    <form action="{{ url_for('add_entry') }}" method="post" class="add-entry">
-      <dl>
-        <dt>Manual Temp Input:</dt>
-        <dd><input type="text" size="30" name="temp"></dd>
-        <dd><button type="submit">Share</button></dd>
-      </dl>
+
+    <form action="{{ url_for('add_entry') }}" method=post class=add-entry>
+      <div class="form-group">
+        <label for="TempInput">Input Temperature</label>
+        <input type=text size="30" name=temp>
+      </div>
+      <button type=submit class="btn btn-default">Submit!</button>
+
+
+
+      <!-- <dl>
+        <dt>Manual Temp Input:
+        <dd><input type=text size=30 name=temp>
+        <dd><input type=submit value=Share>
+      </dl> -->
     </form>
   {% endif %}
-  <ul class="entries">
-    <li><em>Unbelievable.  No entries here so far</em></li>
-  </ul>
+
 {% endblock %}
