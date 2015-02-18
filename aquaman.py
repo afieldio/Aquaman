@@ -94,9 +94,9 @@ def logout():
     flash('You were logged out')
     return redirect(url_for('show_entries'))
 
-
-
-
+@app.route('/about')
+def about():
+    return 'The about page'
 
 if __name__ == '__main__':
 	app.run()

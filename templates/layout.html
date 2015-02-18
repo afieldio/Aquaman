@@ -41,6 +41,7 @@
     <main>
       <h1>Aquaman</h1>
       <nav>
+	<a href="#">About </a>
         {% if not session.logged_in %}
           <a href="{{ url_for('login') }}">log in</a>
         {% else %}
