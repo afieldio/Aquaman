@@ -1,62 +1,4 @@
 <!doctype html>
-<<<<<<< HEAD
-<html>
-  <head>
-    <title>Aquaman</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-    <script src="https://www.google.com/jsapi" type="text/javascript"></script>
-    <script type="text/javascript"
-          src="//www.google.com/jsapi?autoload={
-            'modules':[{
-              'name':'visualization',
-              'version':'1',
-              'packages':['corechart']
-            }]
-          }"></script>
-    <script type="text/javascript">
-      google.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-        var jsonData = {{data | safe}};
-
-        var data = new google.visualization.DataTable();
-
-        data.addColumn('string', 'Date');
-        data.addColumn('number', 'Temp');
-
-        data.addRows(jsonData);
-
-        var options = {
-          title: 'TEmp Time',
-          curveType: 'function',
-          legend: { position: 'bottom' }
-        };
-
-        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-
-        chart.draw(data, options);
-      }
-    </script>
-  </head>
-  <body>
-    <main>
-      <h1>Aquaman</h1>
-      <nav>
-	<a href="#">About </a>
-        {% if not session.logged_in %}
-          <a href="{{ url_for('login') }}">log in</a>
-        {% else %}
-          <a href="{{ url_for('logout') }}">log out</a>
-        {% endif %}
-      </nav>
-      {% for message in get_flashed_messages() %}
-        <div class="flash">{{ message }}</div>
-      {% endfor %}
-      {% block body %}{% endblock %}
-      <div id="curve_chart"></div>
-    </main>
-  </body>
-=======
 <html lang="en">
 <head>
   <title>Aquaman</title>
@@ -118,5 +60,4 @@
 </div>
   
 </div>
->>>>>>> d0596b8e27d8e0a597e55242e390e605b8ea7fbb
 </html>
