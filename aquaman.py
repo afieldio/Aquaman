@@ -45,24 +45,11 @@ def show_entries():
 	cur = g.db.execute('select * from tempdata order by time asc')
 	description = {"id": ("number", "ID"), "Temp": ("number", "temp"), "Time": ("datetime", "time")}
 	entries = [(row[2], row[1]) for row in cur.fetchall()]
-	# entries = ""
-	# for row in cur.fetchall():
-	# 	entries += "[{{0}}, {{1}}]".format(row[0], row[1])
-	# 	print entries
+	
 	data=json.dumps(entries)
 
-	print data
-
-
-	# print data
-	# data_table = gviz_api.DataTable(description)
-	# data_table.LoadData(data)
-
-	# json = data_table.ToJSon(columns_order=("id", "Temp", "Time"),order_by="Time")
-
-	# entries=jsonify(results=entries)
-	# for row in cur.fetchall():
-	# 	print "[{1}, {2}]".format(row[0], row[1])
+	#print data
+	
 	return render_template('show_data.html', data=data)
 
 @app.route('/add', methods=['POST'])
@@ -96,7 +83,8 @@ def logout():
 
 @app.route('/about')
 def about():
-    return 'The about page'
+	return render_template('about.html')
+
 
 if __name__ == '__main__':
 	app.run()
