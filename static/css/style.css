@@ -54,3 +54,7 @@ h1{
 	font-size: 4em;
 	text-align: center;
 }
+
+.emphasis{
+	font-weight: bold;
+}

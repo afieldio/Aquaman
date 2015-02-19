@@ -1,4 +1,12 @@
 {% extends "layout.html" %}
 {% block body %}
-  <div>This is the about page</div>
+  <div>
+  	<h2>Background</h2>
+  	<p>Aquaman started its life when I began looking at using using the Raspberry Pi and Arduino to monitor and control a system. The system in question is <span class="emphasis">Aquaponics</span></p>
+
+  	<img src="{{ url_for('static', filename='sae_logos.jpg') }}">
+
+  	<h2>Aquaponics</h2>
+  	<p>So what is aquaponics? Aquaponics is a Closed Looped system that utilises naturally occuring processes to grow both plants and protein</p>
+  </div>
 {% endblock %}

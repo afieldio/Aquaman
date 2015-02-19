@@ -1,19 +1,24 @@
 import sqlite3
 
 from flask import Flask, jsonify, request, session, g, redirect, url_for, render_template, flash
+from w1thermsensor import W1ThermSensor
+
 # from contextlib import 
 import gviz_api
 import json
 
 
 #configuration
-
 DATABASE =  'data.db'
 DEBUG = True
 SECRET_KEY = 'dev key'
 USERNAME = 'admin'
 PASSWORD = 'default'
 entries = ""
+
+
+#instantiate sensor
+sensor = W1ThermSensor()
 
 #create application
 
@@ -42,6 +47,7 @@ def connect_db():
 
 @app.route('/')
 def show_entries():
+
 	cur = g.db.execute('select * from tempdata order by time asc')
 	description = {"id": ("number", "ID"), "Temp": ("number", "temp"), "Time": ("datetime", "time")}
 	entries = [(row[2], row[1]) for row in cur.fetchall()]
@@ -54,9 +60,12 @@ def show_entries():
 
 @app.route('/add', methods=['POST'])
 def add_entry():
+	temp = sensor.get_temperature()
+	print temp
 	if not session.get('logged_in'):
 		abort(401)
 	g.db.execute('insert into tempdata (temp, time) values (?, datetime())', [request.form['temp']])
+	# g.db.execute('insert into tempdata (temp, time) values (temp, datetime())')
 	g.db.commit()
 	flash('New Entry Successfull')
 	return redirect(url_for('show_entries'))
